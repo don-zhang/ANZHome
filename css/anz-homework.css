@@ -1,0 +1,141 @@
+body{
+    margin:0;
+    padding:0;
+}
+/*******************login page start******************/
+.login-page{
+    background-color: #0696ca;
+}
+.login-main{
+    position: relative;
+    top: 150px;
+    width: 600px;
+    height: 300px;
+    color: aliceblue;
+    margin: 0 auto;
+}
+.login-main .login{
+    padding: 1rem;
+}
+.login-main .login .login-info{
+    display: none;
+    font-size: 16px;
+    height: 2rem;
+    line-height: 2rem;
+}
+.success{
+    color: green;
+}
+.error{
+    color: red;
+}
+.login-main .login .login-header{
+    border-bottom: 1px solid #FFF;
+    padding: 5px;
+    width: 30rem;
+}
+.login-main .login .login-input{
+    margin-bottom: 1rem;
+}
+.login-main .login .login-input>input{
+    width: 20rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0px 1px 1px #444343;
+}
+.login-main .login .login-submit{
+    margin-top: 2rem;
+}
+.login-main .login .login-submit button{
+    width: 8rem;
+    height: 1.8rem;
+    color: rgb(56, 134, 181);
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px #8c8a8a;
+}
+label.input-label{
+    width: 10rem;
+}
+/*******************login page end******************/
+
+/*******************home page start******************/
+.home-nav{
+    width: 100%;
+    height: 3rem;
+    background: #18B3F0;
+    position: absolute;
+    top:0;
+    left:0;
+}
+nav ul{
+    list-style:none;
+    display:inline;
+    margin-left: 5rem;
+}
+nav ul li{
+    width:8rem;
+    display:inline-block;
+    height: 3rem;
+    line-height: 3rem;
+    padding-left: 1rem;
+}
+nav ul li a{
+    color: #FFF;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+.active{
+    background: #6ec2ff;
+}
+nav ul li:hover{
+    background: #6ec2ff;
+}
+nav .user-name{
+    display: inline;
+    margin-right: 1rem;
+    color: #FFF;
+    font-weight: bold;
+}
+nav .home-user{
+    display: inline;
+    float: right;
+    height: 3rem;
+    line-height: 3rem;
+    margin-right: 3rem;
+}
+.home-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5rem;
+}
+.left-content{
+    width: 10rem;
+    background: #CCC;
+}
+.right-content{
+    width: 50rem;
+    margin-left: 2rem;
+}
+.right-content table{
+    border-collapse:collapse;
+    color: #18B3F0;
+}
+.right-content table tr th{
+    background: #f1f1f1;
+}
+.right-content td, th{
+    width: 10rem;
+    border: 1px solid #f1f1f1;
+}
+/*******************home page start******************/
+
+/*******************dashboards page start******************/
+
+
+/*******************dashboards page end******************/

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script type="text/javascript" src="resources/JQuery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="resources/md5.min.js"></script>
+    <script type="text/javascript" src="js/anz-homework.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/anz-homework.css"/>
+</head>
+<body>
+<header class="home-header"></header>
+<nav class="home-nav">
+    <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Dashboards</a></li>
+    </ul>
+    <div class="home-user">
+        <p class="user-name">Current User: test</p>
+        <button>Logout</button>
+    </div>
+</nav>
+<section class="home-section">
+    <div class="left-content">
+        <select name="log-type">
+            <option value="info">Info</option>
+            <option value="debug">Debug</option>
+            <option value="error">Error</option>
+        </select>
+    </div>
+    <div class="right-content">
+        <table>
+            <tr>
+                <th>TimeStamp</th>
+                <th>Log Marker</th>
+                <th>Logger</th>
+                <th>Log Level</th>
+                <th>Current Thread</th>
+                <th>Log Message</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>
