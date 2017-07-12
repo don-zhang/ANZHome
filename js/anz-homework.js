@@ -1,35 +1,37 @@
 /**
  * Created by DON on 2017/7/10.
  */
-$(document).ready(function(){
-    var userid = "";
-    $("#login-submit-button").click(function(){
-        userid = $("#anz-user").val();
-        var password = md5($("#anz-password").val());
-        var loginFlag = false;
-        $.getJSON("models/users.json","",function(data){
-            //check userid and password
-            $.each(data, function(index,item){
-                if(userid == item.UserId){
-                    if(password == item.Password){
-                        loginFlag = true;
-                    }
-                }
-            });
-            if(loginFlag){
-                $(".login-info").removeClass("error");
-                $(".login-info").addClass("success");
-                $(".login-info").text("Login success!");
-                $(".login-info").fadeIn();
-                setTimeout(function(){
-                    window.location.href = "homepage.html?userid=" + userid;
-                }, 1000);
-            }else{
-                $(".login-info").removeClass("success");
-                $(".login-info").addClass("error");
-                $(".login-info").text("User ID or Password is invalid!");
-                $(".login-info").fadeIn();
+function setCookie(c_name, value, expiredays)
+{
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" +escape(value) + ((expiredays==null) ? "" : ";expires=" + exdate.toGMTString());
+}
+
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        var c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start!=-1)
+        {
+            c_start = c_start + c_name.length+1;
+            var c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1){
+                c_end = document.cookie.length;
             }
-        });
-    });
-});
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+}
+
+function delCookie(name)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval = getCookie(name);
+    if(cval != null){
+        document.cookie= name + "=" + cval + ";expires=" + exp.toGMTString();
+    }
+}

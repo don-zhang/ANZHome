@@ -4,50 +4,99 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
     <script type="text/javascript" src="resources/JQuery/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="resources/md5.min.js"></script>
     <script type="text/javascript" src="js/anz-homework.js"></script>
     <link type="text/css" rel="stylesheet" href="css/anz-homework.css"/>
 </head>
 <body>
-<header class="home-header"></header>
-<nav class="home-nav">
-    <ul>
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Dashboards</a></li>
-    </ul>
-    <div class="home-user">
-        <p class="user-name">Current User: test</p>
-        <button>Logout</button>
-    </div>
-</nav>
-<section class="home-section">
-    <div class="left-content">
-        <select name="log-type">
-            <option value="info">Info</option>
-            <option value="debug">Debug</option>
-            <option value="error">Error</option>
-        </select>
-    </div>
-    <div class="right-content">
-        <table>
-            <tr>
-                <th>TimeStamp</th>
-                <th>Log Marker</th>
-                <th>Logger</th>
-                <th>Log Level</th>
-                <th>Current Thread</th>
-                <th>Log Message</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-        </table>
-    </div>
-</section>
+    <header class="home-header"></header>
+    <nav class="home-nav">
+        <ul class="nav-menu">
+            <li class="nav-menu-item active"><a href="homepage.html">Home</a></li>
+            <li class="nav-menu-item"><a href="dashboard.html">Dashboards</a></li>
+            <li class="nav-menu-item right-side">
+                <a href=""><p class="user-name"></p>▼</a>
+                <ul class="user-menu">
+                    <li class="user-menu-list"><a href="#" id="login-out">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <section class="home-section">
+        <div class="left-content">
+            <select name="logs-type">
+                <option value="">-Log Level-</option>
+                <option value="DEBUG">DEBUG</option>
+                <option value="INFO">INFO</option>
+                <option value="WARN">WARN</option>
+                <option value="ERROR">ERROR</option>
+                <option value="FATAL">FATAL</option>
+            </select>
+        </div>
+        <div class="right-content">
+            <table class="anz-table">
+                <tr>
+                    <th>TimeStamp</th>
+                    <th>Log Marker</th>
+                    <th>Logger</th>
+                    <th>Log Level</th>
+                    <th>Current Thread</th>
+                    <th>Log Message</th>
+                </tr>
+                <tr>
+                    <td colspan="6">Empty</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".user-name").html(getCookie('anzuser'));
+            //#####################Home page - logs type select function#################
+            var logs_arr = [];
+            $.getJSON("models/logs.json","",function(data){
+                $.each(data, function (index, item) {
+                    $.each(item.LogItems, function (i, v) {
+                        logs_arr.push(v);
+                    });
+                });
+            });
+
+            $('select[name="logs-type"]').change(function () {
+                var table_html = "<tr>" +
+                    "<th>TimeStamp</th>" +
+                    "<th>Log Marker</th>" +
+                    "<th>Logger</th>" +
+                    "<th>Log Level</th>" +
+                    "<th>Current Thread</th>" +
+                    "<th>Log Message</th>" +
+                    "</tr>";
+                var log_type = $(this).val();
+                var empty_flag = true;
+                $.each(logs_arr, function (i, v) {
+                    if(v.LogLevel == log_type){
+                        table_html += "<tr>"+
+                            "<td>" + v.TimeStamp + "</td>" +
+                            "<td>" + v.LogMarker + "</td>" +
+                            "<td>" + v.Logger + "</td>" +
+                            "<td>" + v.LogLevel + "</td>" +
+                            "<td>" + v.CurrentThread + "</td>" +
+                            "<td>" + v.LogMessage + "</td>" +
+                            "</tr>";
+                        empty_flag = false;
+                    }
+                });
+
+                if(empty_flag){
+                    table_html += "<tr><td colspan='6'>Empty</td></tr>";
+                }
+                $(".anz-table").html(table_html);
+            });
+
+            $("#login-out").click(function () {
+                delCookie('anzuser');
+                window.location.href = "login.html";
+            });
+        });
+    </script>
 </body>
 </html>

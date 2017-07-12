@@ -24,9 +24,51 @@
             <input id="anz-password" type="password" name="anz-password"/>
         </div>
         <div class="login-submit">
-            <button id="login-submit-button" type="submit">Log In-></button>
+            <button id="login-submit-button" type="submit">Log In ▶</button>
         </div>
     </div>
+    <script type="text/javascript">
+        var login_user = getCookie('anzuser');
+        if(login_user != ""){
+            window.location.href = "homepage.html";
+        }
+        var user_json = {};
+        $(document).ready(function() {
+            //###############Login page - user check function#############################
+            user_json = {};
+            $.getJSON("models/users.json", "", function (data) {
+                user_json = data;
+            });
+
+            $("#login-submit-button").click(function () {
+                var userid = $("#anz-user").val();
+                var password = md5($("#anz-password").val());
+                var loginFlag = false;
+                $.each(user_json, function (index, item) {
+                    if (userid == item.UserId) {
+                        if (password == item.Password) {
+                            loginFlag = true;
+                            setCookie('anzuser', item.UserId, 1);
+                        }
+                    }
+                });
+                if (loginFlag) {
+                    $(".login-info").removeClass("error");
+                    $(".login-info").addClass("success");
+                    $(".login-info").text("Login success!");
+                    $(".login-info").fadeIn();
+                    setTimeout(function () {
+                        window.location.href = "homepage.html";
+                    }, 1000);
+                } else {
+                    $(".login-info").removeClass("success");
+                    $(".login-info").addClass("error");
+                    $(".login-info").text("User ID or Password is invalid!");
+                    $(".login-info").fadeIn();
+                }
+            });
+        });
+    </script>
 </div>
 </body>
 </html>

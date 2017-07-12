@@ -2,9 +2,193 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dash board</title>
+    <title>Dashboards Page</title>
+    <script type="text/javascript" src="resources/JQuery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="resources/Chart.min.js"></script>
+    <script type="text/javascript" src="js/anz-homework.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/anz-homework.css"/>
 </head>
 <body>
+    <header class="home-header"></header>
+    <nav class="home-nav">
+        <ul class="nav-menu">
+            <li class="nav-menu-item"><a href="homepage.html">Home</a></li>
+            <li class="nav-menu-item active"><a href="dashboard.html">Dashboards</a></li>
+            <li class="nav-menu-item right-side">
+                <a href=""><p class="user-name"></p>▼</a>
+                <ul class="user-menu">
+                    <li class="user-menu-list"><a href="#" id="login-out">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <section class="dashboards-section">
+        <div class="section-main">
 
+            <div class="anz-chart-pie">
+                <div style="font-size:14px;text-align: center;">Log Types</div>
+                <canvas id="anzPie"></canvas>
+            </div>
+            <div class="anz-chart-line">
+                <canvas id="anzLine"></canvas>
+            </div>
+        </div>
+
+    </section>
+
+<script type="text/javascript">
+    //#####################Dashboards page - logs chart display#################
+    //ready event definition
+    $(document).ready(function(){
+        $(".user-name").html(getCookie('anzuser'));
+
+        $("#login-out").click(function () {
+            delCookie('anzuser');
+            window.location.href = "login.html";
+        });
+    });
+    //get logs, and create pie and line chart
+    $.getJSON("models/logs.json","",function(data){
+        var logs_arr = [];
+        $.each(data, function (index, item) {
+            $.each(item.LogItems, function (i, v) {
+                logs_arr.push(v);
+            });
+        });
+
+        createAnzPieChart(logs_arr);
+
+        createAnzLineChart(logs_arr);
+    });
+    //create pie chart
+    function createAnzPieChart(logs_arr) {
+        var ctx = $("#anzPie");
+        var infoCount = 0, debugCount = 0, traceCount = 0;
+        $.each(logs_arr, function (i, v) {
+            if(v.LogLevel.toUpperCase() == "INFO"){
+                infoCount ++;
+            }else if(v.LogLevel.toUpperCase() == "DEBUG"){
+                debugCount ++;
+            }else if(v.LogLevel.toUpperCase() == "TRACE"){
+                traceCount ++;
+            }
+        });
+        var config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: "Log Types",
+                    data: [infoCount, debugCount, traceCount],
+                    backgroundColor: [
+                        'rgba(0,153,204,0.8)',
+                        'rgba(0,204,102,0.8)',
+                        'rgba(204,0,51,0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(0,153,204,1)',
+                        'rgba(0,204,102,1)',
+                        'rgba(204,0,51,1)'],
+                    borderWidth: 1
+                }],
+                labels: [
+                    'INFO',
+                    'DEBUG',
+                    'TRACE'
+                ]
+            }
+        };
+        return new Chart(ctx, config);
+    }
+    //create line chart
+    function createAnzLineChart(logs_arr) {
+        var ctx = $("#anzLine");
+        var chartMap = new Map();
+        var countArr;
+        $.each(logs_arr, function (i, v) {
+            var date = v.TimeStamp.split(" ")[0];
+            if(chartMap.has(date)){
+                countArr = chartMap.get(date);
+            }else{
+                countArr = [0,0,0];
+            }
+            if(v.LogLevel.toUpperCase() == "INFO"){
+                countArr[0] ++;
+            }else if(v.LogLevel.toUpperCase() == "DEBUG"){
+                countArr[1] ++;
+            }else if(v.LogLevel.toUpperCase() == "TRACE"){
+                countArr[2] ++;
+            }
+            chartMap.set(date,countArr);
+        });
+        console.log(chartMap);
+        var dateX = [];
+        var infoY = [];
+        var debugY = [];
+        var traceY = [];
+        for(let [k,v] of chartMap.entries()){
+            dateX.push(k);
+            infoY.push(v[0]);
+            debugY.push(v[1]);
+            traceY.push(v[2]);
+        }
+        var config = {
+            type: 'line',
+            data: {
+                labels: dateX,
+                datasets: [{
+                    label: "INFO",
+                    backgroundColor: 'rgba(0,153,204,1)',
+                    borderColor: 'rgba(0,153,204,1)',
+                    data: infoY,
+                    fill: false,
+                }, {
+                    label: "DEBUG",
+                    fill: false,
+                    backgroundColor: 'rgba(0,204,102,1)',
+                    borderColor: 'rgba(0,204,102,1)',
+                    data: debugY,
+                }, {
+                    label: "TRACE",
+                    fill: false,
+                    backgroundColor: 'rgba(204,0,51,1)',
+                    borderColor: 'rgba(204,0,51,1)',
+                    data: traceY,
+                }]
+            },
+            options: {
+                responsive: true,
+                title:{
+                    display:true,
+                    text:'Logs Over Time'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Count'
+                        }
+                    }]
+                }
+            }
+        };
+        return new Chart(ctx, config);
+    }
+</script>
 </body>
 </html>

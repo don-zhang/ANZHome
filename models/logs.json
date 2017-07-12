@@ -1,0 +1,152 @@
+[
+  {
+    "Server": "TestServer1",
+    "LogFileName": "TestLog1.log",
+    "LogItems": [
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "c.a.acs.acs-aem-tools-bundle",
+        "LogLevel": "INFO",
+        "LogMessage": "Service [4859] ServiceEvent REGISTERED"
+      },
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.LoginContextProviderImpl",
+        "LogLevel": "TRACE",
+        "LogMessage": "Found pre-authenticated subject: No further login actions required."
+      },
+      {
+        "TimeStamp": "2015-05-11 17:34:56,548",
+        "LogMarker": "NA",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.u.LoginModuleImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Adding Credentials to shared state"
+      }
+    ]
+  },
+  {
+    "Server": "TestServer2",
+    "LogFileName": "TestLog2.log",
+    "LogItems": [
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "c.a.acs.acs-aem-tools-bundle",
+        "LogLevel": "INFO",
+        "LogMessage": "Service [4859] ServiceEvent REGISTERED"
+      },
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.LoginContextProviderImpl",
+        "LogLevel": "TRACE",
+        "LogMessage": "Found pre-authenticated subject: No further login actions required."
+      },
+      {
+        "TimeStamp": "2015-05-11 17:34:56,548",
+        "LogMarker": "NA",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.u.LoginModuleImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Adding Credentials to shared state"
+      }
+    ]
+  },
+  {
+    "Server": "TestServer3",
+    "LogFileName": "TestLog3.log",
+    "LogItems": [
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "c.a.acs.acs-aem-tools-bundle",
+        "LogLevel": "INFO",
+        "LogMessage": "Service [4859] ServiceEvent REGISTERED"
+      },
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.LoginContextProviderImpl",
+        "LogLevel": "TRACE",
+        "LogMessage": "Found pre-authenticated subject: No further login actions required."
+      },
+      {
+        "TimeStamp": "2015-05-11 17:34:56,548",
+        "LogMarker": "NA",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.u.LoginModuleImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Adding Credentials to shared state"
+      }
+    ]
+  },
+  {
+    "Server": "TestServer4",
+    "LogFileName": "TestLog4.log",
+    "LogItems": [
+      {
+        "TimeStamp": "2015-05-11 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "c.a.acs.acs-aem-tools-bundle",
+        "LogLevel": "INFO",
+        "LogMessage": "Service [4859] ServiceEvent REGISTERED"
+      },
+      {
+        "TimeStamp": "2015-04-21 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.LoginContextProviderImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Found pre-authenticated subject: No further login actions required."
+      },
+      {
+        "TimeStamp": "2015-05-11 17:34:56,548",
+        "LogMarker": "NA",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.u.LoginModuleImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Adding Credentials to shared state"
+      }
+    ]
+  },
+  {
+    "Server": "TestServer5",
+    "LogFileName": "TestLog5.log",
+    "LogItems": [
+      {
+        "TimeStamp": "2015-06-28 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "c.a.acs.acs-aem-tools-bundle",
+        "LogLevel": "INFO",
+        "LogMessage": "Service [4859] ServiceEvent REGISTERED"
+      },
+      {
+        "TimeStamp": "2015-06-28 11:17:23,548",
+        "LogMarker": "admin",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.LoginContextProviderImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Found pre-authenticated subject: No further login actions required."
+      },
+      {
+        "TimeStamp": "2015-06-28 17:34:56,548",
+        "LogMarker": "NA",
+        "CurrentThread": "qtp1395423247-193",
+        "Logger": "o.a.j.o.s.a.u.LoginModuleImpl",
+        "LogLevel": "DEBUG",
+        "LogMessage": "Adding Credentials to shared state"
+      }
+    ]
+  }
+]
